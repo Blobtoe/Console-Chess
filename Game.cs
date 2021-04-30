@@ -53,7 +53,7 @@ namespace chess
                     if (MovePiece(selectedPiece) == true) {
                         // If the move is successfull, change the turn
                         if (turn == player1) {
-                            turn = player2;
+                            //turn = player2;
                         }
                         else {
                             turn = player1;
@@ -376,11 +376,21 @@ namespace chess
                     (int X, int Y) oldPos = (piece.position.X, piece.position.Y);
 
                     // Add the move the pieces's move history list
-                    piece.moveHistory.Add(new List<(int x, int y)>() {oldPos, (move.X, move.Y)});
+                    piece.moveHistory.Add((oldPos, (move.X, move.Y), gameBoard[move.Y, move.X]));
                     moveHistory.Add(((oldPos.X, oldPos.Y), (move.X, move.Y), piece, turn, gameBoard[move.Y, move.X]));
 
                     // Move the piece to its new position
                     gameBoard[move.Y, move.X] = piece;
+
+                    if (piece.type == "king" && Math.Abs(oldPos.X - move.X) == 2) {
+                        if (move.X > oldPos.X) {
+                            gameBoard[move.X, 5].moveHistory.Add(((7, move.X), (5, move.X), gameBoard[move.X, 5]));
+                            moveHistory.Add(((7, move.X), (5, move.X), piece, turn, gameBoard[move.X, 5]));
+                            gameBoard[move.X, 5] = gameBoard[move.X, 7];
+                            gameBoard[move.X, 7] = new Piece("empty", 7, move.X, ConsoleColor.Black, null, ' ');
+                            gameBoard[move.X, 5].position = (7, move.X);
+                        }
+                    }
 
                     // Update the piece object's postition
                     piece.position.X = move.X;

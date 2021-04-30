@@ -23,7 +23,8 @@ namespace chess {
         public Player team;
 
         /// <summary> The list of all the piece's past moves </summary>
-        public List<List<(int X, int Y)>> moveHistory = new List<List<(int X, int Y)>>();
+        public List<((int X, int Y) from, (int X, int Y) to, Piece replacedPiece)> moveHistory = new List<((int X, int Y) from, (int X, int Y) to, Piece replacedPiece)>();
+
 
         /// <summary>
         /// Piece constructor
