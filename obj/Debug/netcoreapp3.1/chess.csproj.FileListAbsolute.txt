@@ -1,0 +1,11 @@
+E:\Felix Perron\chess\obj\Debug\netcoreapp3.1\chess.csprojAssemblyReference.cache
+E:\Felix Perron\chess\obj\Debug\netcoreapp3.1\chess.AssemblyInfoInputs.cache
+E:\Felix Perron\chess\obj\Debug\netcoreapp3.1\chess.AssemblyInfo.cs
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.exe
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.deps.json
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.runtimeconfig.json
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.runtimeconfig.dev.json
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.dll
+E:\Felix Perron\chess\bin\Debug\netcoreapp3.1\chess.pdb
+E:\Felix Perron\chess\obj\Debug\netcoreapp3.1\chess.dll
+E:\Felix Perron\chess\obj\Debug\netcoreapp3.1\chess.pdb
