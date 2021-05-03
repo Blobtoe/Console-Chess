@@ -56,7 +56,7 @@ namespace chess
                             turn = player2;
                         }
                         else {
-                            //turn = player1;
+                            turn = player1;
                         }
                     }
                     else {
@@ -75,6 +75,8 @@ namespace chess
             System.Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine($"{winner.name} Wins!");
             System.Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ReadKey();
         }
 
 
