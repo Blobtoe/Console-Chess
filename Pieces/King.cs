@@ -98,6 +98,21 @@ namespace chess {
                 }
             }
 
+            // If this piece hasn't moved AND the piece four tiles to the left is a rook AND the piece four tiles to the left hasn't moved AND if the three tiles in between them are empty
+            if (piece.moveHistory.Count == 0 && Game.gameBoard[piece.position.Y, piece.position.X - 4].type == "rook" && Game.gameBoard[piece.position.Y, piece.position.X - 4].moveHistory.Count == 0 && Game.gameBoard[piece.position.Y, piece.position.X - 1].type == "empty" && Game.gameBoard[piece.position.Y, piece.position.X - 2].type == "empty" && Game.gameBoard[piece.position.Y, piece.position.X - 3].type == "empty") {
+                // If the piece if on the team 1
+                if (piece.team.id == 1) {
+                    // Add C1 the the list of possible moves
+                    possibleMoves.Add((2, 0));
+                }
+
+                // If the piece is on team 2
+                else {
+                    // Add C8 to the list of possible moves
+                    possibleMoves.Add((2, 7));
+                }
+            }
+
             // Return the list of possible moves
             return possibleMoves;
         }

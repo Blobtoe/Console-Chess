@@ -53,10 +53,10 @@ namespace chess
                     if (MovePiece(selectedPiece) == true) {
                         // If the move is successfull, change the turn
                         if (turn == player1) {
-                            //turn = player2;
+                            turn = player2;
                         }
                         else {
-                            turn = player1;
+                            //turn = player1;
                         }
                     }
                     else {
@@ -382,14 +382,28 @@ namespace chess
                     // Move the piece to its new position
                     gameBoard[move.Y, move.X] = piece;
 
+                    // If the move is a castle
                     if (piece.type == "king" && Math.Abs(oldPos.X - move.X) == 2) {
+                        // Information about the castling rook (default is the one to the left of the king)
+                        int rookXPos = 0;
+                        int newRookXPos = 3;
+
+                        // If the player is castling to the right
                         if (move.X > oldPos.X) {
-                            gameBoard[move.X, 5].moveHistory.Add(((7, move.X), (5, move.X), gameBoard[move.X, 5]));
-                            moveHistory.Add(((7, move.X), (5, move.X), piece, turn, gameBoard[move.X, 5]));
-                            gameBoard[move.X, 5] = gameBoard[move.X, 7];
-                            gameBoard[move.X, 7] = new Piece("empty", 7, move.X, ConsoleColor.Black, null, ' ');
-                            gameBoard[move.X, 5].position = (7, move.X);
+                            rookXPos = 7;
+                            newRookXPos = 5;
                         }
+
+                        // Add the move the lists of past moves
+                        gameBoard[move.Y, rookXPos].moveHistory.Add(((move.X, rookXPos), (move.X,newRookXPos), gameBoard[move.Y,newRookXPos]));
+                        moveHistory.Add(((rookXPos, move.Y), (newRookXPos, move.Y), gameBoard[move.Y, rookXPos], turn, gameBoard[move.Y,newRookXPos]));
+                        
+                        // Move the rook
+                        gameBoard[move.Y,newRookXPos] = gameBoard[move.Y, rookXPos];
+                        gameBoard[move.Y,newRookXPos].position = (newRookXPos, move.Y);
+                        
+                        // Replace the old tile with an empty piece
+                        gameBoard[move.Y, rookXPos] = new Piece("empty", rookXPos, move.Y, ConsoleColor.Black, null, ' ');
                     }
 
                     // Update the piece object's postition
